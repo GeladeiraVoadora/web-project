@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.baseproject.model.Edital;
 import com.example.baseproject.service.EditalService;
+import com.example.baseproject.repository.EditalRepo;
 
 @RestController
 @RequestMapping("/editais")
@@ -33,5 +34,18 @@ public class EditalController {
     public ResponseEntity<Void> deletarEdital(@PathVariable Long id) {
         editalService.deletarEdital(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Autowired
+    private EditalRepo repository;
+    
+    @RequestMapping("/EditalPrazo")
+    public Iterable<Edital> getEditalPrazo(){
+        return repository.findByPrazo(2023);
+    }
+
+    @RequestMapping("/EditalRequisitos")
+    public Iterable<Edital> getEditalRequisitos(){
+        return repository.findByRequisitos(null);
     }
 }
