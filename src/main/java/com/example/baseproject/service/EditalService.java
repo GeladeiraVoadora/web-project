@@ -17,6 +17,11 @@ public class EditalService {
         return editalRepo.save(edital);
     }
 
+    public void deletarEdital(Long id) {
+        editalRepo.deleteById(id); //FIXME: problema no delete
+    }
+
     //mais operações de CRUD
+
     
 }
